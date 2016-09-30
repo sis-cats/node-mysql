@@ -48,6 +48,7 @@
 - [Type casting](#type-casting)
 - [Connection Flags](#connection-flags)
 - [Debugging and reporting problems](#debugging-and-reporting-problems)
+- [Contributing](#contributing)
 - [Running tests](#running-tests)
 - [Todo](#todo)
 
@@ -128,11 +129,6 @@ spend more time on it (ordered by time of contribution):
 * [Holiday Extras](http://www.holidayextras.co.uk/) (they are [hiring](http://join.holidayextras.co.uk/))
 * [Newscope](http://newscope.com/) (they are [hiring](http://www.newscope.com/stellenangebote))
 
-If you are interested in sponsoring a day or more of my time, please
-[get in touch][].
-
-[get in touch]: http://felixge.de/#consulting
-
 ## Community
 
 If you'd like to discuss this module, or ask questions about it, please use one
@@ -200,7 +196,7 @@ When establishing a connection, you can set the following options:
 * `connectTimeout`: The milliseconds before a timeout occurs during the initial connection
   to the MySQL server. (Default: `10000`)
 * `stringifyObjects`: Stringify objects instead of converting to values. See
-issue [#501](https://github.com/mysqljs/mysql/issues/501). (Default: `'false'`)
+issue [#501](https://github.com/mysqljs/mysql/issues/501). (Default: `false`)
 * `insecureAuth`: Allow connecting to MySQL instances that ask for the old
   (insecure) authentication method. (Default: `false`)
 * `typeCast`: Determines if column values should be converted to native
@@ -472,6 +468,7 @@ poolCluster.of('*').getConnection(function (err, connection) {});
 var pool = poolCluster.of('SLAVE*', 'RANDOM');
 pool.getConnection(function (err, connection) {});
 pool.getConnection(function (err, connection) {});
+pool.query(function (err, result) {});
 
 // close all connections
 poolCluster.end(function (err) {
@@ -542,7 +539,7 @@ space for a new connection to be created on the next getConnection call.
 ## Performing queries
 
 The most basic way to perform a query is to call the `.query()` method on an object
-(like a `Connection` or `Pool` instance).
+(like a `Connection`, `Pool`, or `PoolNamespace` instance).
 
 The simplest form of .`query()` is `.query(sqlString, callback)`, where a SQL string
 is the first argument and the second is a callback:
@@ -1318,6 +1315,31 @@ will have:
 * The minimal amount of code required to reproduce the problem (if possible)
 * As much debugging output and information about your environment (mysql
   version, node version, os, etc.) as you can gather.
+
+## Contributing
+
+This project welcomes contributions from the community. Contributions are
+accepted using GitHub pull requests. If you're not familiar with making
+GitHub pull requests, please refer to the
+[GitHub documentation "Creating a pull request"](https://help.github.com/articles/creating-a-pull-request/).
+
+For a good pull request, we ask you provide the following:
+
+1. Try to include a clear description of your pull request in the description.
+   It should include the basic "what" and "why"s for the request.
+2. The tests should pass as best as you can. See the [Running tests](#running-tests)
+   section on hwo to run the different tests. GitHub will automatically run
+   the tests as well, to act as a safety net.
+3. The pull request should include tests for the change. A new feature should
+   have tests for the new feature and bug fixes should include a test that fails
+   without the corresponding code change and passes after they are applied.
+   The command `npm run test-cov` will generate a `coverage/` folder that
+   contains HTML pages of the code coverage, to better understand if everything
+   you're adding is being tested.
+4. If the pull request is a new feature, please be sure to include all
+   appropriate documentation additions in the `Readme.md` file as well.
+5. To help ensure that your code is similar in style to the existing code,
+   run the command `npm run lint` and fix any displayed issues.
 
 ## Running tests
 

@@ -4,6 +4,15 @@ This file is a manually maintained list of changes for each release. Feel free
 to add your changes here when sending pull requests. Also send corrections if
 you spot any mistakes.
 
+## HEAD
+
+* Add `query` method to `PoolNamespace` #1256 #1505 #1506
+  - Used as `cluster.of(...).query(...)`
+* Update `bignumber.js` to 2.4.0
+* Update `sqlstring` to 2.1.0
+  - Accept numbers and other value types in `escapeId`
+  - Run `buffer.toString()` through escaping
+
 ## v2.11.1 (2016-06-07)
 
 * Fix writing truncated packets starting with large string/buffer #1438
